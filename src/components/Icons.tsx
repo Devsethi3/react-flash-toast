@@ -31,7 +31,7 @@ const iconStyle = `
     animation: successCheckmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
   }
 
-  .icon-error path:last-child {
+  .icon-error path {
     transform-origin: center;
     animation: errorCrossBounce 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
   }
@@ -86,7 +86,7 @@ export const Icons = {
       className="icon-error"
     >
       <circle cx="26" cy="26" r="25" fill="currentColor" opacity="0.2" />
-      <path d="M35.6 16.4L26 26l9.6 9.6-2.4 2.4L24 28.4l-9.6 9.6-2.4-2.4L21.6 26 12 16.4l2.4-2.4L24 23.6l9.6-9.6z" />
+      <path d="M26 15l11 11-11 11-11-11 11-11 11 11-11 11z" />
     </svg>
   ),
   info: (
@@ -99,7 +99,7 @@ export const Icons = {
       className="icon-info"
     >
       <circle cx="26" cy="26" r="25" fill="currentColor" opacity="0.2" />
-      <path d="M26 22a2 2 0 100 4 2 2 0 000-4zm0-4c-1.1 0-2 .9-2 2h4c0-1.1-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2h4c0-1.1-.9-2-2-2z" />
+      <path d="M26 15c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2s2-.9 2-2V17c0-1.1-.9-2-2-2zm0 26c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
     </svg>
   ),
 };

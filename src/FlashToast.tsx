@@ -3,19 +3,31 @@ import { Icons } from "./components/Icons";
 
 interface ToastProps {
   id: string;
-  message: string;
-  type: "success" | "error" | "info";
+  title?: string;
+  description?: string;
+  content?: React.ReactNode;
+  type?: "success" | "error" | "info";
   onClose: () => void;
+  duration?: number;
+  style?: React.CSSProperties;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, type = "info", onClose }) => {
+const FlashToast: React.FC<ToastProps> = ({
+  title,
+  description,
+  content,
+  type = "info",
+  onClose,
+  duration = 3000,
+  style = {},
+}) => {
   const [isExiting, setIsExiting] = useState(false);
   const timerRef = useRef<number | null>(null);
 
   const startTimer = () => {
     timerRef.current = window.setTimeout(() => {
       setIsExiting(true);
-    }, 3000);
+    }, duration);
   };
 
   const clearTimer = () => {
@@ -27,7 +39,7 @@ const Toast: React.FC<ToastProps> = ({ message, type = "info", onClose }) => {
   useEffect(() => {
     startTimer();
     return clearTimer;
-  }, []);
+  }, [duration]);
 
   const handleMouseEnter = () => clearTimer();
   const handleMouseLeave = () => startTimer();
@@ -46,10 +58,19 @@ const Toast: React.FC<ToastProps> = ({ message, type = "info", onClose }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onAnimationEnd={handleAnimationEnd}
+      style={style}
     >
       <div className="flash-toast-icon">{Icons[type]}</div>
-      <span>{message}</span>
-      <button onClick={() => setIsExiting(true)}>×</button>
+      <div className="flash-toast-content">
+        {title && <h3 className="flash-toast-title">{title}</h3>}
+        {description && (
+          <p className="flash-toast-description">{description}</p>
+        )}
+        {content && <div>{content}</div>}
+      </div>
+      <button className="flash-toast-close" onClick={() => setIsExiting(true)}>
+        ×
+      </button>
     </div>
   );
 };
@@ -81,7 +102,7 @@ export const Toaster: React.FC = () => {
   return (
     <div className="flash-toast-container">
       {toasts.map((toast) => (
-        <Toast
+        <FlashToast
           key={toast.id}
           {...toast}
           onClose={() => removeToast(toast.id)}
@@ -92,11 +113,23 @@ export const Toaster: React.FC = () => {
 };
 
 export const toast = (
-  message: string,
-  type: "success" | "error" | "info" = "info"
+  title: string,
+  description?: string,
+  content?: React.ReactNode,
+  type: "success" | "error" | "info" = "info",
+  duration?: number,
+  style?: React.CSSProperties
 ) => {
   const event = new CustomEvent("flash-toast", {
-    detail: { id: Date.now().toString(), message, type },
+    detail: {
+      id: Date.now().toString(),
+      title,
+      description,
+      content,
+      type,
+      duration,
+      style,
+    },
   });
   window.dispatchEvent(event);
 };
@@ -139,9 +172,17 @@ const style = `
   margin-right: 12px;
   flex-shrink: 0;
 }
-.flash-toast span {
+.flash-toast-content {
   flex-grow: 1;
-  word-break: break-word;
+}
+.flash-toast-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+.flash-toast-description {
+  margin: 4px 0 0;
+  font-size: 14px;
 }
 .flash-toast button {
   background: none;

@@ -1,54 +1,62 @@
 import React from "react";
 
 const iconStyle = `
-  @keyframes successCheckmark {
-    0% { stroke-dashoffset: 66; transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { stroke-dashoffset: 0; transform: scale(1); opacity: 1; }
+  @keyframes successCheck {
+    0% { stroke-dashoffset: 124; opacity: 0; }
+    60% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
   }
 
-  @keyframes errorCrossBounce {
-    0%, 20% { transform: rotate(0deg) scale(0); }
-    50% { transform: rotate(180deg) scale(1.2); }
-    80% { transform: rotate(360deg) scale(0.9); }
-    100% { transform: rotate(360deg) scale(1); }
+  @keyframes successCircle {
+    0% { stroke-dashoffset: 480; opacity: 0; }
+    60% { stroke-dashoffset: 0; opacity: 0.5; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+
+  @keyframes errorCross {
+    0% { stroke-dashoffset: 124; opacity: 0; }
+    60% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+
+  @keyframes errorCircle {
+    0% { stroke-dashoffset: 480; opacity: 0; }
+    60% { stroke-dashoffset: 0; opacity: 0.5; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
   }
 
   @keyframes infoAppear {
-    0% { transform: translateY(50%); opacity: 0; }
-    50% { transform: translateY(-10%); opacity: 0.8; }
-    100% { transform: translateY(0); opacity: 1; }
+    0% { transform: translateY(50%) scale(0.8); opacity: 0; }
+    60% { transform: translateY(-10%) scale(1.1); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
   }
 
   .icon-success circle {
-    opacity: 0;
-    animation: fadeIn 0.3s ease-out 0.2s forwards;
+    stroke-dasharray: 480;
+    stroke-dashoffset: 480;
+    animation: successCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
   }
 
   .icon-success path {
-    stroke-dasharray: 66;
-    stroke-dashoffset: 66;
-    animation: successCheckmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
+    stroke-dasharray: 124;
+    stroke-dashoffset: 124;
+    animation: successCheck 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
   }
 
-  .icon-error path:last-child {
-    transform-origin: center;
-    animation: errorCrossBounce 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  .icon-error circle {
+    stroke-dasharray: 480;
+    stroke-dashoffset: 480;
+    animation: errorCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
   }
 
-
-  @keyframes infoAppear {
-    0% { transform: translateY(50%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+  .icon-error path {
+    stroke-dasharray: 124;
+    stroke-dashoffset: 124;
+    animation: errorCross 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
   }
-    
+
   .icon-info {
-    animation: infoAppear 0.5s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
-  }
-
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    animation: infoAppear 0.6s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
   }
 `;
 
@@ -69,14 +77,12 @@ export const Icons = {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 52 52"
-      fill="none"
-      stroke="currentColor"
       strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke="currentColor"
+      fill="none"
+      className="icon-success"
       width="24"
       height="24"
-      className="icon-success"
     >
       <circle cx="26" cy="26" r="23" />
       <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
@@ -86,16 +92,17 @@ export const Icons = {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 52 52"
-      fill="currentColor"
+      strokeWidth="3"
+      stroke="currentColor"
+      fill="none"
+      className="icon-error"
       width="24"
       height="24"
-      className="icon-error"
     >
-      <circle cx="26" cy="26" r="25" fill="currentColor" opacity="0.2" />
-      <path d="M35.6 16.4L26 26l9.6 9.6-2.4 2.4L24 28.4l-9.6 9.6-2.4-2.4L21.6 26 12 16.4l2.4-2.4L24 23.6l9.6-9.6z" />
+      <circle cx="26" cy="26" r="23" />
+      <path d="M17 17l18 18M35 17L17 35" />
     </svg>
   ),
-
   info: (
     <svg
       xmlns="http://www.w3.org/2000/svg"

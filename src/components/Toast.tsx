@@ -71,7 +71,7 @@ const style = `
     display: flex;
     align-items: center;
     margin: 10px 0;
-    padding: 16px 20px;
+    padding: 10px 20px;
     border-radius: 8px;
     color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -105,14 +105,13 @@ const style = `
 
   .flash-toast-title {
     font-weight: 500;
-    margin: 0 0 4px 0;
-    font-size: 15px;
+    padding-top: -2px;
+    font-size: 16px;
   }
 
   .flash-toast-description {
     margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13px;
   }
 
   .flash-toast-close {
@@ -122,7 +121,7 @@ const style = `
     color: inherit;
     cursor: pointer;
     font-size: 25px;
-    padding: 2px 0px;
+    padding: 8px 0px;
     line-height: 1;
     transition: opacity 0.3s ease;
     margin-left: 16px;

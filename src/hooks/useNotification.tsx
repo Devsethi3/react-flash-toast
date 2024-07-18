@@ -19,7 +19,7 @@ export interface ToastItem {
   style?: React.CSSProperties;
 }
 
-let addToastSingleton: (toast: Omit<ToastItem, "id">) => void;
+let addToastSingleton: (toast: Omit<ToastItem, "id" | "position">) => void;
 
 const useNotification = (defaultPosition: ToastPosition = "top-center") => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
@@ -30,17 +30,16 @@ const useNotification = (defaultPosition: ToastPosition = "top-center") => {
       description,
       content,
       type = "success",
-      position = defaultPosition,
       duration = 3000,
       style,
-    }: Omit<ToastItem, "id"> & { content?: React.ReactNode }) => {
+    }: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {
       const newToast: ToastItem = {
         id: Date.now().toString(),
         title,
         description,
         content,
         type,
-        position,
+        position: defaultPosition, // Use defaultPosition from the hook
         duration,
         style,
       };
@@ -67,7 +66,7 @@ export const addToast = ({
   type = "success",
   duration = 3000,
   style,
-}: Omit<ToastItem, "id"> & { content?: React.ReactNode }) => {
+}: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {
   if (addToastSingleton) {
     addToastSingleton({
       title,

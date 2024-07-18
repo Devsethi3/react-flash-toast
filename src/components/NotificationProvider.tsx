@@ -1,4 +1,3 @@
-// src/components/NotificationProvider.tsx
 import React, { createContext, useContext } from "react";
 import useNotification, { ToastPosition } from "../hooks/useNotification";
 import ToastContainer from "./ToastContainer";

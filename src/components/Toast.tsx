@@ -159,7 +159,7 @@ const Toast: React.FC<ToastProps> = ({
   content,
   type = "info",
   onClose,
-  position = "top-right",
+  position = "top-center",
   duration = 3000,
   style = {},
 }) => {

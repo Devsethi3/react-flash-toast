@@ -11,23 +11,23 @@ type ToastPosition =
 
 const style = `
   @keyframes flashToastEnterTop {
-    from { transform: translateY(-120%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(-120%) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
   }
   
   @keyframes flashToastEnterBottom {
-    from { transform: translateY(120%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(120%) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
   }
   
   @keyframes flashToastExitTop {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-120%); opacity: 0; }
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(-120%) scale(0.9); opacity: 0; }
   }
 
   @keyframes flashToastExitBottom {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(120%); opacity: 0; }
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(120%) scale(0.9); opacity: 0; }
   }
   
   .flash-toast-container {
@@ -36,24 +36,24 @@ const style = `
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    max-width: 350px;
+    max-width: 380px;
     width: 100%;
   }
 
   .flash-toast-container.top-left,
   .flash-toast-container.top-center,
-  .flash-toast-container.top-right { top: 20px; }
+  .flash-toast-container.top-right { top: 24px; }
 
   .flash-toast-container.bottom-left,
   .flash-toast-container.bottom-center,
   .flash-toast-container.bottom-right {
-    bottom: 20px;
+    bottom: 24px;
     flex-direction: column-reverse;
   }
 
   .flash-toast-container.top-left,
   .flash-toast-container.bottom-left {
-    left: 20px;
+    left: 24px;
     align-items: flex-start;
   }
 
@@ -65,14 +65,14 @@ const style = `
   }
 
   .flash-toast-container.top-right,
-  .flash-toast-container.bottom-right { right: 20px; }
+  .flash-toast-container.bottom-right { right: 24px; }
 
   .flash-toast {
     display: flex;
-    align-items: center;
-    margin: 10px 0;
-    padding: 10px 20px;
-    border-radius: 8px;
+    align-items: flex-start;
+    margin: 12px 0;
+    padding: 16px;
+    border-radius: 12px;
     color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     max-width: 100%;
@@ -86,9 +86,21 @@ const style = `
     transform: translateY(-2px);
   }
 
-  .flash-toast-success { background-color: #96f4bf; border: 2px solid #2ff487; color: #04593a; }
-  .flash-toast-error { background-color: #ffcfcf; border: 2px solid #fe363699; color: #590404; }
-  .flash-toast-info { background-color: #b3cbff; border: 2px solid #2f32f4b2; color: #041e59;  }
+  .flash-toast-success { 
+    background-color: #96f4bf; 
+    border-left: 4px solid #2ff487; 
+    color: #04593a; 
+  }
+  .flash-toast-error { 
+    background-color: #ffcfcf; 
+    border-left: 4px solid #fe3636; 
+    color: #590404; 
+  }
+  .flash-toast-info { 
+    background-color: #b3cbff; 
+    border-left: 4px solid #2f32f4; 
+    color: #041e59;  
+  }
 
   .flash-toast-icon {
     margin-right: 16px;
@@ -104,28 +116,31 @@ const style = `
   }
 
   .flash-toast-title {
-    font-weight: 500;
-    padding-top: -2px;
+    font-weight: 600;
+    margin: 0 0 4px;
     font-size: 16px;
+    line-height: 1.4;
   }
 
   .flash-toast-description {
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.9;
   }
 
   .flash-toast-close {
     background: none;
     border: none;
-    opacity: 0.4;
     color: inherit;
     cursor: pointer;
-    font-size: 25px;
-    padding: 8px 0px;
+    font-size: 20px;
+    padding: 4px;
     line-height: 1;
     transition: opacity 0.3s ease;
     margin-left: 16px;
     align-self: flex-start;
+    opacity: 0.6;
   }
 
   .flash-toast-close:hover { opacity: 1; }

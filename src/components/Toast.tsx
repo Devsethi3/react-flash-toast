@@ -117,16 +117,22 @@ const style = `
 
   .flash-toast-title {
     font-weight: 600;
-    margin: 0 0 4px;
     font-size: 16px;
-    line-height: 1.4;
+    padding-top: 2px;
   }
 
   .flash-toast-description {
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
+    padding-top: -6px;
     opacity: 0.9;
+  }
+
+  .flex-item{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .flash-toast-close {
@@ -216,20 +222,22 @@ const Toast: React.FC<ToastProps> = ({
         }}
         onAnimationEnd={handleAnimationEnd}
       >
-        <div className="flash-toast-icon">{Icons[type]}</div>
-        <div className="flash-toast-content">
-          {title && <h3 className="flash-toast-title">{title}</h3>}
-          {description && (
-            <p className="flash-toast-description">{description}</p>
-          )}
-          {content && <div>{content}</div>}
+        <div className="flex-item">
+          <div className="flash-toast-icon">{Icons[type]}</div>
+          <div className="flash-toast-content">
+            {title && <h3 className="flash-toast-title">{title}</h3>}
+            {description && (
+              <p className="flash-toast-description">{description}</p>
+            )}
+            {content && <div>{content}</div>}
+          </div>
+          <button
+            className="flash-toast-close"
+            onClick={() => setIsExiting(true)}
+          >
+            ×
+          </button>
         </div>
-        <button
-          className="flash-toast-close"
-          onClick={() => setIsExiting(true)}
-        >
-          ×
-        </button>
       </div>
     </div>
   );

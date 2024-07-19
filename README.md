@@ -41,6 +41,7 @@ By default, toasts will appear in the `top-center` position. You can override th
 ```
 
 Available positions are:
+
 - "top-left"
 - "top-center"
 - "top-right"
@@ -53,7 +54,7 @@ Available positions are:
 Import the `toast` function in any component where you want to trigger a toast notification:
 
 ```jsx
-import { toast } from 'react-flash-toast'
+import { toast } from "react-flash-toast";
 
 const ToastDemo = () => {
   const displayCustomToast = () => {
@@ -80,27 +81,22 @@ const ToastDemo = () => {
     });
   };
 
-  return (
-    <button onClick={displayCustomToast}>
-      Show Custom Toast
-    </button>
-  )
-}
-
+  return <button onClick={displayCustomToast}>Show Custom Toast</button>;
+};
 ```
 
 ## Toast Options
 
 The `toast` function accepts an object with the following properties:
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `title` | string | - | The main title of the toast notification. |
-| `description` | string | - | A brief description or additional information. |
-| `content` | React.ReactNode | - | Custom content to be rendered within the toast. |
-| `type` | string | "success" | Predefined toast types: "success", "error", "info", "warning", "default". |
-| `duration` | number | 3000 | Time in milliseconds for which the toast will be displayed. |
-| `style` | object | - | Custom styles to be applied to the toast container. |
+| Property      | Type            | Default   | Description                                                               |
+| ------------- | --------------- | --------- | ------------------------------------------------------------------------- |
+| `title`       | string          | -         | The main title of the toast notification.                                 |
+| `description` | string          | -         | A brief description or additional information.                            |
+| `content`     | React.ReactNode | -         | Custom content to be rendered within the toast.                           |
+| `type`        | string          | "success" | Predefined toast types: "success", "error", "info", "warning", "default". |
+| `duration`    | number          | 3000      | Time in milliseconds for which the toast will be displayed.               |
+| `style`       | object          | -         | Custom styles to be applied to the toast container.                       |
 
 ## Examples
 
@@ -171,9 +167,7 @@ toast({
 You can customize the default behavior of all toasts by passing props to the `ToastProvider`:
 
 ```jsx
-<ToastProvider 
-  defaultPosition="bottom-center"
->
+<ToastProvider defaultPosition="bottom-center">
   <YourAppContent />
 </ToastProvider>
 ```
@@ -183,24 +177,21 @@ This sets all toasts to appear at the bottom-center position by default, unless 
 ## Accessibility
 
 React Flash Toast is designed with accessibility in mind:
+
 - Toasts are announced to screen readers.
 - Keyboard navigation is supported for dismissing toasts.
 - Color contrasts meet WCAG 2.1 guidelines.
 
-## Browser Support
+## Support
 
-React Flash Toast supports all modern browsers and Internet Explorer 11+.
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for more details.
+If you encounter any issues or have questions, please file an issue on the GitHub repository.
 
 ## License
 
 React Flash Toast is [MIT licensed](LICENSE).
 
-## Conclusion
+## Contributing
 
-React Flash Toast provides a flexible and easy-to-use solution for adding toast notifications to your React applications. With its customizable options and straightforward API, you can quickly implement attractive and informative notifications that enhance your user experience.
+Contributions are welcome! Please open an issue or submit a pull request if you'd like to contribute to this project.
 
-For more information, issues, or feature requests, please visit our [GitHub repository](https://github.com/yourusername/react-flash-toast).
+<!-- For more information, issues, or feature requests, please visit our [GitHub repository](https://github.com/yourusername/react-flash-toast). -->

@@ -63,7 +63,7 @@ export const toast = ({
   title,
   description,
   content,
-  type = "default",
+  type = "success",
   duration = 3000,
   style,
 }: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {

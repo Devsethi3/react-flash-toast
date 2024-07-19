@@ -31,6 +31,18 @@ const iconStyle = `
     100% { transform: translateY(0) scale(1); opacity: 1; }
   }
 
+  @keyframes warningBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+    60% { transform: translateY(-3px); }
+  }
+
+  @keyframes defaultRotate {
+    0% { transform: rotate(0deg); opacity: 0; }
+    50% { transform: rotate(180deg); opacity: 0.5; }
+    100% { transform: rotate(360deg); opacity: 1; }
+  }
+
   .icon-success circle {
     stroke-dasharray: 480;
     stroke-dashoffset: 480;
@@ -60,11 +72,11 @@ const iconStyle = `
   }
 
   .icon-warning {
-    animation: infoAppear 0.6s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
+    animation: warningBounce 0.8s ease-in-out;
   }
 
   .icon-default {
-    animation: infoAppear 0.6s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
+    animation: defaultRotate 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 `;
 
@@ -134,7 +146,7 @@ export const Icons = {
       className="icon-warning"
     >
       <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M1 21h22L12 2 1 21zM12 16v-4h-2v4h2zm0 4v-2h-2v2h2z" />
+      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
     </svg>
   ),
   default: (
@@ -147,7 +159,7 @@ export const Icons = {
       className="icon-default"
     >
       <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2v-6zm0 8h-2v2h2v-2z" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
     </svg>
   ),
 };

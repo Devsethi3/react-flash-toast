@@ -79,7 +79,6 @@ const style = `
     pointer-events: auto;
     transition: all 0.3s ease;
     background-color: #ffffff;
-    border-left: 4px solid #9e9e9e;
   }
 
   .flash-toast:hover {
@@ -109,7 +108,6 @@ const style = `
   }
   .flash-toast-default { 
     background-color: #f7f7f7; 
-    border-left: 4px solid #9e9e9e; 
     color: #333; 
   }
 

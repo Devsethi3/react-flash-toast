@@ -1,8 +1,8 @@
 {
   "name": "react-flash-toast",
-  "version": "1.0.0",
+  "description": "A lightweight, customizable toast notification library for React applications.",
+  "version": "1.0.1",
   "type": "module",
-  "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -12,7 +12,23 @@
   "scripts": {
     "build": "npx rollup -c"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "toast",
+    "notifications",
+    "toast-notifications",
+    "react-toast",
+    "flash-toast",
+    "react-toast-notifications",
+    "UI",
+    "user-interface",
+    "alerts",
+    "notification-system",
+    "react-alerts",
+    "customizable-toast",
+    "react-components",
+    "frontend"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -25,5 +41,13 @@
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Devsethi3/react-flash-toast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Devsethi3/react-flash-toast/issues"
+  },
+  "homepage": "https://github.com/Devsethi3/react-flash-toast#readme"
 }

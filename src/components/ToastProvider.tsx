@@ -1,31 +1,31 @@
 import React, { createContext, useContext } from "react";
-import useNotification, { ToastPosition } from "../hooks/useNotification";
+import useToast, { ToastPosition } from "../hooks/useToast";
 import ToastContainer from "./ToastContainer";
 
-type NotificationContextType = ReturnType<typeof useNotification>;
+type NotificationContextType = ReturnType<typeof useToast>;
 
 const NotificationContext = createContext<NotificationContextType | null>(null);
 
-export const useNotificationContext = () => {
+export const useToastContext = () => {
   const context = useContext(NotificationContext);
   if (!context) {
     throw new Error(
-      "useNotificationContext must be used within a NotificationProvider"
+      "useToastContext must be used within a ToastProvider"
     );
   }
   return context;
 };
 
-interface NotificationProviderProps {
+interface ToastProviderProps {
   children: React.ReactNode;
   defaultPosition?: ToastPosition;
 }
 
-export const NotificationProvider: React.FC<NotificationProviderProps> = ({
+export const ToastProvider: React.FC<ToastProviderProps> = ({
   children,
   defaultPosition = "top-center",
 }) => {
-  const notificationHook = useNotification(defaultPosition);
+  const notificationHook = useToast(defaultPosition);
 
   return (
     <NotificationContext.Provider value={notificationHook}>
@@ -38,4 +38,4 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   );
 };
 
-export default NotificationProvider;
+export default ToastProvider;

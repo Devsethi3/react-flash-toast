@@ -13,18 +13,18 @@ export interface ToastItem {
   title: string;
   description?: string;
   content?: React.ReactNode;
-  type?: "success" | "error" | "info";
+  type?: "success" | "error" | "info" | "warning" | "default";
   position?: ToastPosition;
   duration?: number;
   style?: React.CSSProperties;
 }
 
-let addToastSingleton: (toast: Omit<ToastItem, "id" | "position">) => void;
+let toastSingleton: (toast: Omit<ToastItem, "id" | "position">) => void;
 
-const useNotification = (defaultPosition: ToastPosition = "top-center") => {
+const useToast = (defaultPosition: ToastPosition = "top-center") => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
-  const addToast = useCallback(
+  const toast = useCallback(
     ({
       title,
       description,
@@ -53,22 +53,22 @@ const useNotification = (defaultPosition: ToastPosition = "top-center") => {
   }, []);
 
   // Assign the singleton functions
-  addToastSingleton = addToast;
+  toastSingleton = toast;
 
-  return { toasts, addToast, removeToast };
+  return { toasts, toast, removeToast };
 };
 
-// Export the singleton addToast function
-export const addToast = ({
+// Export the singleton toast function
+export const toast = ({
   title,
   description,
   content,
-  type = "success",
+  type = "default",
   duration = 3000,
   style,
 }: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {
-  if (addToastSingleton) {
-    addToastSingleton({
+  if (toastSingleton) {
+    toastSingleton({
       title,
       description,
       content,
@@ -77,8 +77,8 @@ export const addToast = ({
       style,
     });
   } else {
-    console.warn("addToast called before initialization.");
+    console.warn("toast called before initialization.");
   }
 };
 
-export default useNotification;
+export default useToast;

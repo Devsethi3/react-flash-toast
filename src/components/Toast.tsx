@@ -72,13 +72,14 @@ const style = `
     align-items: flex-start;
     margin: 12px 0;
     padding: 16px;
-    border-radius: 12px;
-    color: white;
+    border-radius: 8px;
+    color: #333;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     max-width: 100%;
     pointer-events: auto;
     transition: all 0.3s ease;
-    background-color: #2196f3;
+    background-color: #ffffff;
+    border-left: 4px solid #9e9e9e;
   }
 
   .flash-toast:hover {
@@ -101,6 +102,16 @@ const style = `
     border-left: 4px solid #2f32f4; 
     color: #041e59;  
   }
+  .flash-toast-warning { 
+    background-color: #ffe4b3; 
+    border-left: 4px solid #f5a623; 
+    color: #593004; 
+  }
+  .flash-toast-default { 
+    background-color: #f7f7f7; 
+    border-left: 4px solid #9e9e9e; 
+    color: #333; 
+  }
 
   .flash-toast-icon {
     margin-right: 16px;
@@ -118,21 +129,20 @@ const style = `
   .flash-toast-title {
     font-weight: 600;
     font-size: 16px;
-    padding-top: 2px;
+    margin: 0 0 4px 0;
   }
 
   .flash-toast-description {
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
-    padding-top: -6px;
     opacity: 0.9;
   }
 
-  .flex-item{
+  .flex-item {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .flash-toast-close {
@@ -145,7 +155,6 @@ const style = `
     line-height: 1;
     transition: opacity 0.3s ease;
     margin-left: 16px;
-    align-self: flex-start;
     opacity: 0.6;
   }
 
@@ -167,7 +176,7 @@ interface ToastProps {
   title?: string;
   description?: string;
   content?: React.ReactNode;
-  type?: "success" | "error" | "info";
+  type?: "success" | "error" | "info" | "warning" | "default";
   onClose: () => void;
   position?: ToastPosition;
   duration?: number;
@@ -178,7 +187,7 @@ const Toast: React.FC<ToastProps> = ({
   title,
   description,
   content,
-  type = "info",
+  type = "default",
   onClose,
   position = "top-center",
   duration = 3000,

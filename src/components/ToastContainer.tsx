@@ -1,7 +1,7 @@
 // src/components/ToastContainer.tsx
 import React from "react";
 import Toast from "./Toast";
-import { ToastItem } from "../hooks/useNotification";
+import { ToastItem } from "../hooks/useToast";
 
 interface ToastContainerProps {
   toasts: ToastItem[];

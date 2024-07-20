@@ -39,7 +39,7 @@ const useToast = (defaultPosition: ToastPosition = "top-center") => {
         description,
         content,
         type,
-        position: defaultPosition, // Use defaultPosition from 
+        position: defaultPosition, // Use defaultPosition 
         duration,
         style,
       };

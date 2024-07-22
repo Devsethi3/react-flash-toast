@@ -1,3 +1,4 @@
+// useToast.tsx
 import { useState, useCallback } from "react";
 
 export type ToastPosition =
@@ -39,7 +40,7 @@ const useToast = (defaultPosition: ToastPosition = "top-center") => {
         description,
         content,
         type,
-        position: defaultPosition,   
+        position: defaultPosition,
         duration,
         style,
       };

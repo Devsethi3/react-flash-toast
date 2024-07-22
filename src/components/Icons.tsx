@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const iconStyle = `
   @keyframes successCheck {
@@ -80,86 +80,105 @@ const iconStyle = `
   }
 `;
 
-// Inject the styles
-const injectIconStyle = () => {
-  if (!document.getElementById("flash-toast-icon-style")) {
-    const styleElement = document.createElement("style");
-    styleElement.id = "flash-toast-icon-style";
-    styleElement.textContent = iconStyle;
-    document.head.appendChild(styleElement);
-  }
+// Custom hook to inject styles
+const useInjectIconStyle = () => {
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      !document.getElementById("flash-toast-icon-style")
+    ) {
+      const styleElement = document.createElement("style");
+      styleElement.id = "flash-toast-icon-style";
+      styleElement.textContent = iconStyle;
+      document.head.appendChild(styleElement);
+    }
+  }, []);
 };
 
-injectIconStyle();
+// Wrapper component to inject styles
+const IconWrapper = ({ children }: { children: React.ReactNode }) => {
+  useInjectIconStyle();
+  return <>{children}</>;
+};
 
 export const Icons = {
   success: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 52 52"
-      strokeWidth="3"
-      stroke="currentColor"
-      fill="none"
-      className="icon-success"
-      width="24"
-      height="24"
-    >
-      <circle cx="26" cy="26" r="23" />
-      <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-    </svg>
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 52 52"
+        strokeWidth="3"
+        stroke="currentColor"
+        fill="none"
+        className="icon-success"
+        width="24"
+        height="24"
+      >
+        <circle cx="26" cy="26" r="23" />
+        <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+      </svg>
+    </IconWrapper>
   ),
   error: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 52 52"
-      strokeWidth="3"
-      stroke="currentColor"
-      fill="none"
-      className="icon-error"
-      width="24"
-      height="24"
-    >
-      <circle cx="26" cy="26" r="23" />
-      <path d="M17 17l18 18M35 17L17 35" />
-    </svg>
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 52 52"
+        strokeWidth="3"
+        stroke="currentColor"
+        fill="none"
+        className="icon-error"
+        width="24"
+        height="24"
+      >
+        <circle cx="26" cy="26" r="23" />
+        <path d="M17 17l18 18M35 17L17 35" />
+      </svg>
+    </IconWrapper>
   ),
   info: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="24"
-      height="24"
-      className="icon-info"
-    >
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-    </svg>
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="24"
+        height="24"
+        className="icon-info"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+      </svg>
+    </IconWrapper>
   ),
   warning: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="24"
-      height="24"
-      className="icon-warning"
-    >
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-    </svg>
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="24"
+        height="24"
+        className="icon-warning"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+      </svg>
+    </IconWrapper>
   ),
   default: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="24"
-      height="24"
-      className="icon-default"
-    >
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
-    </svg>
+    <IconWrapper>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="24"
+        height="24"
+        className="icon-default"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
+      </svg>
+    </IconWrapper>
   ),
 };

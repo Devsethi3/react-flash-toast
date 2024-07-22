@@ -1,3 +1,4 @@
+// Toast.tsx
 import React, { useState, useEffect, useCallback } from "react";
 import { Icons } from "./Icons";
 
@@ -159,16 +160,19 @@ const style = `
   .flash-toast-close:hover { opacity: 1; }
 `;
 
-const injectStyle = () => {
-  if (!document.getElementById("flash-toast-style")) {
-    const styleElement = document.createElement("style");
-    styleElement.id = "flash-toast-style";
-    styleElement.textContent = style;
-    document.head.appendChild(styleElement);
-  }
+const useInjectStyle = () => {
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      !document.getElementById("flash-toast-style")
+    ) {
+      const styleElement = document.createElement("style");
+      styleElement.id = "flash-toast-style";
+      styleElement.textContent = style;
+      document.head.appendChild(styleElement);
+    }
+  }, []);
 };
-
-injectStyle();
 
 interface ToastProps {
   title?: string;
@@ -191,6 +195,7 @@ const Toast: React.FC<ToastProps> = ({
   duration = 3000,
   style = {},
 }) => {
+  useInjectStyle();
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {

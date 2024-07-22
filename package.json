@@ -1,7 +1,7 @@
 {
   "name": "react-flash-toast",
   "description": "A lightweight, customizable toast notification library for React applications.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -15,7 +15,6 @@
   "keywords": [
     "react",
     "toast",
-    "notifications",
     "toast-notifications",
     "react-toast",
     "flash-toast",
@@ -32,6 +31,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "^18.3.3",
     "jsx": "^0.9.89",

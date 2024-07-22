@@ -1,5 +1,4 @@
-// useToast.tsx
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export type ToastPosition =
   | "top-left"
@@ -24,6 +23,12 @@ let toastSingleton: (toast: Omit<ToastItem, "id" | "position">) => void;
 
 const useToast = (defaultPosition: ToastPosition = "top-center") => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   const toast = useCallback(
     ({
@@ -34,6 +39,8 @@ const useToast = (defaultPosition: ToastPosition = "top-center") => {
       duration = 3000,
       style,
     }: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {
+      if (!isMounted) return;
+
       const newToast: ToastItem = {
         id: Date.now().toString(),
         title,
@@ -46,20 +53,23 @@ const useToast = (defaultPosition: ToastPosition = "top-center") => {
       };
       setToasts((prevToasts) => [...prevToasts, newToast]);
     },
-    [defaultPosition]
+    [defaultPosition, isMounted]
   );
 
   const removeToast = useCallback((id: string) => {
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
 
-  // Assign the singleton functions
-  toastSingleton = toast;
+  useEffect(() => {
+    toastSingleton = toast;
+    return () => {
+      toastSingleton = () => {};
+    };
+  }, [toast]);
 
   return { toasts, toast, removeToast };
 };
 
-// Export the singleton toast function
 export const toast = ({
   title,
   description,
@@ -68,7 +78,7 @@ export const toast = ({
   duration = 3000,
   style,
 }: Omit<ToastItem, "id" | "position"> & { content?: React.ReactNode }) => {
-  if (toastSingleton) {
+  if (typeof window !== "undefined" && toastSingleton) {
     toastSingleton({
       title,
       description,
@@ -77,8 +87,6 @@ export const toast = ({
       duration,
       style,
     });
-  } else {
-    console.warn("toast called before initialization.");
   }
 };
 

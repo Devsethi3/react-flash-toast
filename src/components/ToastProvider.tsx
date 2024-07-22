@@ -10,9 +10,7 @@ const NotificationContext = createContext<NotificationContextType | null>(null);
 export const useToastContext = () => {
   const context = useContext(NotificationContext);
   if (!context) {
-    throw new Error(
-      "useToastContext must be used within a ToastProvider"
-    );
+    throw new Error("useToastContext must be used within a ToastProvider");
   }
   return context;
 };
